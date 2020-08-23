@@ -9,7 +9,7 @@ My goal is to completely automatize a manual coffee grinder where a custom chass
 - kitchen scale integrated with Arduino (**soldered wires**, used open-source Arduino code) 
 
 **In progress** 
-- adding IoT functionality with the kitchen scale with NodeMCUs (incl. ESP32 modules) by writing code for Arduino 
+- adding IoT functionality with the kitchen scale with **NodeMCUs (incl. ESP32 modules)** by writing code for Arduino 
 
 **Scheduled** 
 - developing a web app to interface with the kitchen scale and add user input 

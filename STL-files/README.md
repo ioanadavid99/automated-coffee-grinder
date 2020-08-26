@@ -1,4 +1,4 @@
-# STL files  
+# STL-files  
 STL files used for the project. They include:  
 - a custom set of 5:1 gears for the shaft of the motor, and the shaft of the coffee grinder; 
 - and a custom chassis for the coffee grinder, to add space for a battery pack, motor, and the manual coffee grinder itself.  

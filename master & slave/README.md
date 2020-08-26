@@ -5,7 +5,7 @@ The purpose of this directory is for code to interface an NodeMCU (master) with 
 **future work**  
 I will be using two NodeMCUs to interface with each other as a client/server in order to develop this communication using IoT. The goal is to be able to interface with a kitchen scale wirelessly, possibly through simple web/mobile apps as opposed to using the Arduino IDE. 
 
-**schedule**   
+**schedule** 
 - [x] get the Arduino & NodeMCU communicating with one another 
 - [ ] get the NodeMCU to give the Arduino instructions 
 - [ ] get the Arduino to send them back to the NodeMCU 

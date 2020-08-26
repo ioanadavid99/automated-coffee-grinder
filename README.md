@@ -19,4 +19,4 @@ This will be done by using a custom chassis to hold the coffee grinder and motor
 - [ ] connect the coffee grinder + scale for the full user experience 
 
 You can see a draft version of the chassis here:  
-![image test](automatized-coffee-grinder/STL files/coffee-grinder.jpg)
+![image test](STL files/coffee-grinder.jpg)

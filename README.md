@@ -17,3 +17,6 @@ This will be done by using a custom chassis to hold the coffee grinder and motor
 - [ ] develop a simple web/mobile app to communicate with NodeMCUs for user-friendly experience 
 - [ ] interface the Arduino Uno/NodeMCU with the motor of the coffee grinder for full control 
 - [ ] connect the coffee grinder + scale for the full user experience 
+
+You can see a draft version of the chassis here:  
+![image test](STL files/coffee-grinder.jpg)

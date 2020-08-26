@@ -9,6 +9,7 @@ This will be done by using a custom chassis to hold the coffee grinder and motor
 - [x] create custom gears for the motor shaft & coffee grinder shaft using AutoDesk Inventor 
 - [x] create a custom chassis for the coffee grinder using AutoDesk Inventor 
   - [ ] fix the chassis so that the coffee grinder does not rotate with motor (ie. the body of the coffee grinder has to remain still while the shaft is moving so that the coffee can actually grind) 
+    - planning on using bolts that screw into the chassis and at the top of the grinder to keep it in place (brute force solution, for now) 
 - [x] get two NodeMCUs communicating wirelessly using Wi-Fi
 - [x] interface an Arduino Uno with an HX711 amplifier to communicate with a kitchen scale 
 - [x] interface Arduino Uno with NodeMCU as master/slave using I2C communication protocols 
@@ -18,5 +19,5 @@ This will be done by using a custom chassis to hold the coffee grinder and motor
 - [ ] interface the Arduino Uno/NodeMCU with the motor of the coffee grinder for full control 
 - [ ] connect the coffee grinder + scale for the full user experience 
 
-You can see a draft version of the chassis here:  
+You can see a draft version of the chassis here (battery pack is not pictured):  
 ![image test](STL-files/coffee-grinder.jpg)

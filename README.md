@@ -13,11 +13,15 @@ This will be done by using a custom chassis to hold the coffee grinder and motor
 - [x] get two NodeMCUs communicating wirelessly using Wi-Fi
 - [x] interface an Arduino Uno with an HX711 amplifier to communicate with a kitchen scale 
 - [x] interface Arduino Uno with NodeMCU as master/slave using I2C communication protocols 
-  - [ ] add additional functionality for the scope of this project 
+  - [ ] get the NodeMCU to issue an interrupt to the Arduino so the Arduino can go into deep sleep to save power 
+  - [ ] integrate the scale functionality 
 - [ ] interface two NodeMCUs as the client/server to add IoT functionality 
+  - [ ] test sleep modes to see how interrupts work wirelessly and to save power 
+- [ ] control the motor with the Arduino and a 24V battery pack 
 - [ ] develop a simple web/mobile app to communicate with NodeMCUs for user-friendly experience 
-- [ ] interface the Arduino Uno/NodeMCU with the motor of the coffee grinder for full control 
-- [ ] connect the coffee grinder + scale for the full user experience 
+  - [ ] get the server NodeMCU to listen to the app 
+  - [ ] get the two NodeMCUs to communicate effectively 
+- [ ] connect everything together (and make sure it works for the full user experience!)
 
 You can see a draft version of the chassis here (battery pack is not pictured):  
 ![image test](STL-files/coffee-grinder.jpg)

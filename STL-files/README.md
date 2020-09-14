@@ -1,4 +1,4 @@
-# STL files  
+# STL-files  
 STL files used for the project. They include:  
 - a custom set of 5:1 gears for the shaft of the motor, and the shaft of the coffee grinder; 
 - and a custom chassis for the coffee grinder, to add space for a battery pack, motor, and the manual coffee grinder itself.  
@@ -11,6 +11,7 @@ You can see a box on the chassis - that's meant for the battery pack. I didn't c
 
 **current issues**  
 - [ ] the shaft of the gear that goes on top of the motor has worn down - a new piece needs to be printed 
-- [ ] the coffee grinder spins with the motor, meaning no coffee actually gets ground
-  - possible solutions include a tighter fit & increased friction (eg. hot glue on the inside), using screws to hold the grinder in place 
+- [ ] the coffee grinder spins with the motor, meaning no coffee actually gets ground. possible solutions include:
+  - tighter fit & increased friction (eg. hot glue on the inside)
+  - using bolts to hold the grinder in place 
 - [ ] a final version of the chassis still needs to be printed

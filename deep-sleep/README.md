@@ -3,4 +3,6 @@ This folder contains code testing the deep sleep functionality. The goal is to b
 
 The goal, in the future, is to be able to have a second NodeMCU which will communicate over Wi-Fi. It will work something like this:  
 
-**NodeMCU #2** ---> issues interrupt over Wi-Fi: "i want to grind coffee" ---> **NodeMCU #1** ---> issues interrupt over wire: "i want to grind coffee" ---> **Arduino** ---> turns the motor on to grind coffee (among other features)
+![image test](process.jpg)
+
+Obviously, the "grind coffee" interrupt will only be issued once or twice a day (hopefully, not more, but this is alas the life of an engineering student) so deep sleep functionality is important. Stay tuned for updates.

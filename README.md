@@ -13,7 +13,7 @@ This will be done by using a custom chassis to hold the coffee grinder and motor
 - [x] get two NodeMCUs communicating wirelessly using Wi-Fi
 - [x] interface an Arduino Uno with an HX711 amplifier to communicate with a kitchen scale 
 - [x] interface Arduino Uno with NodeMCU as master/slave using I2C communication protocols 
-  - [ ] get the NodeMCU to issue an interrupt to the Arduino so the Arduino can go into deep sleep to save power 
+  - [x] get the NodeMCU to issue an interrupt to the Arduino when it needs the Arduino to do things - allows the Arduino to go into deep sleep to save power 
   - [ ] integrate the scale functionality 
 - [ ] interface two NodeMCUs as the client/server to add IoT functionality 
   - [ ] test sleep modes to see how interrupts work wirelessly and to save power 

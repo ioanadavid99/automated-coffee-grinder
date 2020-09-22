@@ -3,6 +3,7 @@
 # brief overview of repository
 **STL-files:** STL files of the coffee grinder chassis (including revisions), and custom gears.  
 **calibration-code:** contains code used to interface an Arduino Uno with a kitchen scale.  
+**deep-sleep:** getting the Arduino to be put into deep sleep mode for power preservation purposes (say that fast three times)
 **master-and-slave:** code used to interface an Arduino Uno and NodeMCU using a master (NodeMCU) and slave (Arduino).  
 **wifi-stuff:** using two NodeMCUs to talk to each other over Wi-Fi.  
 **working-code:** adding everything from the above files together!  

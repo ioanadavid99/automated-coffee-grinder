@@ -1,4 +1,13 @@
 # automatized-coffee-grinder
+
+# brief overview of repository
+**STL-files:** STL files of the coffee grinder chassis (including revisions), and custom gears.  
+**calibration-code:** contains code used to interface an Arduino Uno with a kitchen scale.  
+**master-and-slave:** code used to interface an Arduino Uno and NodeMCU using a master (NodeMCU) and slave (Arduino).  
+**wifi-stuff:** using two NodeMCUs to talk to each other over Wi-Fi.  
+**working-code:** adding everything from the above files together!  
+
+# the fun stuff
 **Why?** I love coffee, so I wanted to do something with - you guessed it - coffee!   
 
 My goal is to completely automatize a manual coffee grinder. That is, take a manual coffee grinder and make it electric. Then, just for fun, add some IoT functionality so I don't even have to be in the room in order to get it going (ie. while I'm finding the motivation to leave my bed, start the coffee grinder remotely).  

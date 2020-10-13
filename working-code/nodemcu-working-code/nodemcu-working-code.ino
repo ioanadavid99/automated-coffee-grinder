@@ -67,7 +67,7 @@ void loop() {
   // TODO: wait for a response from the Arduino that it has woken up. otherwise, keep polling 
   delay(3000);            // used for debugging purposes - this is just to verify that the Arduino received the signal 
 
-  // don't need the below - Arduino will automatically go to sleep 
+  // don't need the below - Arduino will automaticallys go to sleep 
   /*  
   digitalWrite(D1, HIGH); // TODO: do we even need to signal to put it to sleep? just needs to go high when we want to wake it up
   Serial.println("NodeMCU is putting the Arduino in sleep...");          // for debugging 

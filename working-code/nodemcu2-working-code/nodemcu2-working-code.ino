@@ -55,26 +55,21 @@ void loop() {
     if (client.connected()) {
       digitalWrite(ledPin, LOW);  // to show the communication only (inverted logic)
       // want to send an interrupt to NodeMCU #1 here - assuming we have already gotten it from the app 
+      Serial.println("we want to grind coffee now..."); 
       client.println("grind coffee"); 
       // the client should respond that it has received the request. otherwise, it will keep polling. 
       while(client.readStringUntil('\r') != "grinding") {   // as long as the response ISN'T that it's received the message (ie. grinding) then keep polling
         ;;  // basically keep polling here
         client.flush(); 
-        if(client.readStringUntil('\r') == "done grinding")
-          goToSleep();      // sending it in deep sleep mode 
       }
+      Serial.println("NodeMCU #1 has received our response"); 
       digitalWrite(ledPin, HIGH);
+      // TODO: implement deep sleep functionality 
+      goToSleep();    // going to sleep here - will implement functionality later 
     }
     client.stop();                // terminates the connection with the client
   }
 }
-      // commented out code from original project
-//      Serial.println(".");
-//      String request = client.readStringUntil('\r');    // receives the message from the client
-//      Serial.print("From client: "); 
-//      Serial.println(request);
-//      client.flush();
-//      client.println("Hi client! No, I am listening.\r"); // sends the answer to the client
 
 void goToSleep() { 
   while(1);   // infinite loop for debugging 

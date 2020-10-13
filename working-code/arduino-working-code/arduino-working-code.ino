@@ -1,6 +1,6 @@
 /*
  * Author:        Ioana David
- * Last modified: Sept. 21st, 2020
+ * Last modified: oCT. 12 2020 
  * Purpose:       Beginning to put different components of the project together. See GitHub for a detailed explanation of the process. This code will be downloaded to an Arduino Uno. 
  * 
  * Credits:
@@ -48,11 +48,13 @@ void loop() {
  */
 void goingToSleep(void) { 
   Serial.println("going to sleep... Zzz"); 
+  
   // not sure if this will work - different library, unfamiliar with it 
   LowPower.deepSleep();       // apparently puts the Arduino in deep sleep mode - using a different library so not sure 
+  
   // alternatively (from the tutorial):
   sleep_enable(); 
-  attachInterrupt(digitalPinToInterrupt(2), wakeUp, LOW);   // setting an interrupt for the NodeMCU 
+  attachInterrupt(digitalPinToInterrupt(2), wakeUp, HIGH);   // setting an interrupt for the NodeMCU 
   set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
   sleep_cpu(); 
   Serial.println("just woke up! :D"); 
@@ -61,9 +63,12 @@ void goingToSleep(void) {
 void wakeUp(void) { 
   sleep_disable(); 
   detachInterrupt(digitalPinToInterrupt(2));          // tbh still not too sure what this does?? 
+  
   // the most basic thing to do: get the scale to perform a reading 
   Serial.print("reading from the scale: ");
   Serial.print(scale.get_units(), 1); 
   Serial.print("g"); 
   Serial.println(); 
+
+  // TODO: tell the NodeMCU that it's done grinding. 
 }

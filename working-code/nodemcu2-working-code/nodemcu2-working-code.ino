@@ -35,6 +35,8 @@ void setup() {
   }
   //Serial.print("server is connected"); 
   server.begin();                         // starts the server
+
+  // for debugging - can remove after testing 
   Serial.println("Connected to wifi");
   Serial.print("Status: "); Serial.println(WiFi.status());    // Network parameters
   Serial.print("IP: ");     Serial.println(WiFi.localIP());
@@ -53,17 +55,21 @@ void loop() {
   WiFiClient client = server.available();
   if (client) {
     if (client.connected()) {
-      digitalWrite(ledPin, LOW);  // to show the communication only (inverted logic)
+      digitalWrite(ledPin, HIGH);  // to show the communication only 
+      
       // want to send an interrupt to NodeMCU #1 here - assuming we have already gotten it from the app 
       Serial.println("we want to grind coffee now..."); 
       client.println("grind coffee"); 
+      
       // the client should respond that it has received the request. otherwise, it will keep polling. 
       while(client.readStringUntil('\r') != "grinding") {   // as long as the response ISN'T that it's received the message (ie. grinding) then keep polling
         ;;  // basically keep polling here
         client.flush(); 
       }
+      
       Serial.println("NodeMCU #1 has received our response"); 
-      digitalWrite(ledPin, HIGH);
+      digitalWrite(ledPin, LOW);
+      
       // TODO: implement deep sleep functionality 
       goToSleep();    // going to sleep here - will implement functionality later 
     }

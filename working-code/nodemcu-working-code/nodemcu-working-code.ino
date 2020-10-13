@@ -52,6 +52,7 @@ void loop() {
     client.flush();   // just stay here and keep polling 
   }
 
+  digitalWrite(ledPin, HIGH);   // debugging feature 
   // got the response. time to tell the Arduino
   Serial.println("time to grind..."); 
 
@@ -77,6 +78,7 @@ void loop() {
   Serial.println("done grinding!");   // printing to the serial monitor 
   client.println("done grinding");    // also for debugging 
 
+  digitalWrite(ledPin, LOW);      // also for debugging 
   while(1);               // hang here for now, for debugging purposes 
 
 }

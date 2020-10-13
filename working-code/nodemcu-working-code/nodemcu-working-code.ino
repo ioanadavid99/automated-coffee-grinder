@@ -45,26 +45,34 @@ void loop() {
   // wait for NodeMCU #2 to send a signal here...
   client.connect(server, 80);
   // here - need to wait for an interrupt from the Nodemcu #2
+
+  // polling to hear from the server 
   Serial.println("polling to hear from the server"); 
   while(client.readStringUntil('\r') != "grind coffee"){ 
     client.flush();   // just stay here and keep polling 
   }
+
+  // got the response. time to tell the Arduino
   Serial.println("time to grind..."); 
-  client.println("grinding");     // letting NodeMCU #2 know we received the message 
-  // can also call an ISR to wake the Arduino up after receiving the interrupt from NodeMCU #2 
-  // interrupt the Arduino. get it to grind coffee 
+
+  // letting NodeMCU #2 know we received the message 
+  client.println("grinding");     
+  
   // TODO: make this an ISR? 
+  // interrupt the Arduino. get it to grind coffee 
   Serial.println("waking the Arduino up..."); 
   digitalWrite(D1, HIGH);
   Serial.println("NodeMCU is waking the Arduino up...");   // for debugging 
   // TODO: wait for a response from the Arduino that it has woken up. otherwise, keep polling 
   delay(3000);            // used for debugging purposes - this is just to verify that the Arduino received the signal 
 
+  // don't need the below - Arduino will automatically go to sleep 
   /*  
   digitalWrite(D1, HIGH); // TODO: do we even need to signal to put it to sleep? just needs to go high when we want to wake it up
   Serial.println("NodeMCU is putting the Arduino in sleep...");          // for debugging 
   delay(3000);            // again, also used for debugging 
   */ 
+  
   // TODO: get a signal from the Arduino that we are done grinding 
   Serial.println("done grinding!");   // printing to the serial monitor 
   client.println("done grinding");    // also for debugging 

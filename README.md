@@ -1,4 +1,4 @@
-# automatized-coffee-grinder
+# automated-coffee-grinder
 
 # brief overview of repository
 **STL-files:** STL files of the coffee grinder chassis (including revisions), and custom gears.  
@@ -11,9 +11,9 @@
 # the fun stuff
 **Why?** I love coffee, so I wanted to do something with - you guessed it - coffee!   
 
-My goal is to completely automatize a manual coffee grinder. That is, take a manual coffee grinder and make it electric. Then, just for fun, add some IoT functionality so I don't even have to be in the room in order to get it going (ie. while I'm finding the motivation to leave my bed, start the coffee grinder remotely).  
+My goal is to completely automate a manual coffee grinder. That is, take a manual coffee grinder and make it electric. Then, just for fun, add some IoT functionality so I don't even have to be in the room in order to get it going (ie. while I'm finding the motivation to leave my bed, start the coffee grinder remotely).  
 
-This will be done by using a custom chassis to hold the coffee grinder and motor, while custom gears provide enough torque to grind the coffee. The setup will be placed on an IoT-enabled scale so that the user can control the amount of coffee desired and start it remotely. The coffee grinder will stop itself once it's reached the desired amount ground (after a certain period of time) and will remind the user if the grinder needs to be replenished with coffee beans. 
+This will be done by using a custom chassis to hold a manual coffee grinder and motor. The motor will turn a set of custom gears (so there is enough torque to grind the coffee),  so that the coffee grinder can be turned autonomously. The setup will be placed on an IoT-enabled scale to detect when the user is running low on coffee (and remind them to refill by sending a message over Wi-Fi). The user can also send data to the coffee grinder over Wi-Fi to give it a command to start, and tell it the desired serving size (eg. one cup, two). The coffee grinder will then start grinding and stop itself once it's reached the desired amount ground (after a certain period of time).  
 
 **overall progress**
 - [x] create custom gears for the motor shaft & coffee grinder shaft using AutoDesk Inventor 

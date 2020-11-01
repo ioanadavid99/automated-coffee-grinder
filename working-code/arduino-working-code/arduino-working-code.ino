@@ -1,6 +1,6 @@
 /*
  * Author:        Ioana David
- * Last modified: OCT. 12 2020 
+ * Last modified: Oct. 31st 2020 
  * Purpose:       Beginning to put different components of the project together. See GitHub for a detailed explanation of the process. This code will be downloaded to an Arduino Uno. 
  * 
  * Credits:
@@ -12,11 +12,10 @@
  #include "HX711.h"
  #include "avr/sleep.h"
 
- // pin constants - will have to change 
- #define  DOUT                3    // this probably has to change - this is where the interrupt will be issued 
- #define  INTERRUPT_PIN       2     // pin 2 is used to issue the interrupt - see what other pin you can use 
- // TODO: will have to change the value for CLK probably 
- #define  CLK                 2    // this will also probably have to change, keeping it for now 
+ // pin constants  
+ #define  INTERRUPT_PIN       2     // pin 2 is used to 'receive' the interrupt 
+ #define  DOUT                3    
+ #define  CLK                 4     // previously 2 - changed to 4  
  #define  CALIBRATION_FACTOR  242   // this is the calibration factor determined from tests using the author's code; can be changed later if necessary 
 
  // other definitions 
@@ -71,7 +70,7 @@ void goingToSleep(void) {
    
   // from the tutorial:
   sleep_enable(); 
-  attachInterrupt(digitalPinToInterrupt(2), wakeUp, HIGH);   // setting an interrupt for the NodeMCU 
+  attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), wakeUp, HIGH);   // setting an interrupt for the NodeMCU 
   set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
   sleep_cpu();  // this enables sleep mode again 
   Serial.println("just woke up! :D");     // debugging 
@@ -86,7 +85,7 @@ void wakeUp(void) {
   sleep_disable(); 
   digitalWrite(LED_BUILTIN, HIGH);                    // for debugging 
   Serial.println("arduino: waking up"); 
-  //detachInterrupt(digitalPinToInterrupt(2));          // tbh still not too sure what this does?? removes the interrupt from pin2... might not operate as a loop in this case 
+  //detachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN));          // tbh still not too sure what this does?? removes the interrupt from pin2... might not operate as a loop in this case 
 
   checkWeight();    // get the scale to do its thing 
   if(scaleStatus == SUCCESS) { 
@@ -107,6 +106,7 @@ void wakeUp(void) {
 void checkWeight(void){ 
     // TODO: power up the scale -- verify 
   scale.power_up();     // saves the life of the battery-powered scale :-) 
+  digitalWrite(LED_BUILTIN, HIGH);  // for debugging -- shows we have powered up successfully 
   
   // the most basic thing to do: get the scale to perform a reading 
   // serial monitor for debugging right now 
@@ -116,9 +116,15 @@ void checkWeight(void){
   Serial.println(); 
 
   int weight = scale.get_units(); 
+  // for debugging
+  Serial.print("weight: ");
+  Serial.print(weight), 
+  Serial.println(); 
 
   // error codes to store in scaleStatus (like a status register) 
-  if (weight = BASE_WEIGHT) { 
+  // TODO: can also tare the scale with an empty coffee grinder on it... that might work easier
+    
+  if (weight = BASE_WEIGHT) {   
     scaleStatus = ERR_NO_COFFEE; 
   }
   else if(weight <= (BASE_WEIGHT + 5)) { 
@@ -133,6 +139,7 @@ void checkWeight(void){
 
   // TODO: power down the scale -- verify 
   scale.power_down();   
+  digitalWrite(LED_BUILTIN, LOW); 
 }
 
 // TODO: finish function that tells the motor to grind

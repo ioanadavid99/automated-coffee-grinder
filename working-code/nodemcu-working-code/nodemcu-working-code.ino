@@ -21,8 +21,10 @@ WiFiClient client;
 
 void setup() {
   Serial.begin(115200); 
-  // TODO: determine if syntax is valid (ie. can call D1, or is there a specific # to write?) 
+  // TODO: determine if syntax is valid (ie. can call D1, or is there a specific # to write?) - this is pin 5, if this doesn't work 
   pinMode(D1, OUTPUT);    // set up pin D1 to produce a signal to wake up the Arduino 
+  /*
+  // just debugging right now 
   Wifi.begin(ssid, pass); 
   while(Wifi.status() != WL_CONNECTED) { 
     Serial.println("connecting..."); 
@@ -37,11 +39,41 @@ void setup() {
   Serial.print("Gateway: "); Serial.println(WiFi.gatewayIP());
   Serial.print("SSID: "); Serial.println(WiFi.SSID());
   Serial.print("Signal: "); Serial.println(WiFi.RSSI());
+  */ 
   pinMode(ledPin, OUTPUT);
   digitalWrite(D1, LOW); // start with the Arduino in sleep mode 
 }
 
 void loop() {
+
+  digitalWrite(D1, LOW); 
+  digitalWrite(ledPin, LOW); 
+  delay(5000);    // just delay for a bit here 
+  digitalWrite(D1, HIGH); 
+  digitalWrite(ledPin, HIGH); 
+  delay(5000);   
+
+  // repeat twice more 
+  
+  digitalWrite(D1, LOW); 
+  digitalWrite(ledPin, LOW); 
+  delay(5000);    // just delay for a bit here 
+  digitalWrite(D1, HIGH); 
+  digitalWrite(ledPin, HIGH); 
+  delay(5000); 
+
+  // repeat once more 
+  
+  digitalWrite(D1, LOW); 
+  digitalWrite(ledPin, LOW); 
+  delay(5000);    // just delay for a bit here 
+  digitalWrite(D1, HIGH); 
+  digitalWrite(ledPin, HIGH); 
+  delay(5000); 
+
+  while(1);   // just stay here for now 
+
+  /*
   // wait for NodeMCU #2 to send a signal here...
   client.connect(server, 80);
   // here - need to wait for an interrupt from the Nodemcu #2
@@ -66,8 +98,8 @@ void loop() {
   Serial.println("NodeMCU is waking the Arduino up...");   // for debugging 
   // TODO: wait for a response from the Arduino that it has woken up. otherwise, keep polling 
   delay(3000);            // used for debugging purposes - this is just to verify that the Arduino received the signal 
-
-  // don't need the below - Arduino will automaticallys go to sleep 
+  */ 
+  // don't need the below - Arduino will automatically go to sleep 
   /*  
   digitalWrite(D1, HIGH); // TODO: do we even need to signal to put it to sleep? just needs to go high when we want to wake it up
   Serial.println("NodeMCU is putting the Arduino in sleep...");          // for debugging 

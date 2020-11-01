@@ -10,6 +10,8 @@
 #include <SPI.h>
 #include <ESP8266WiFi.h>
 
+#define D1  5 // hopefully this works 
+
 byte ledPin = 2;    // using this to know that communication is taking place 
 // removed SSID and password for security reasons 
 char ssid[] = "";
@@ -41,39 +43,10 @@ void setup() {
   Serial.print("Signal: "); Serial.println(WiFi.RSSI());
   */ 
   pinMode(ledPin, OUTPUT);
-  digitalWrite(D1, LOW); // start with the Arduino in sleep mode 
+  //digitalWrite(D1, LOW); // start with the Arduino in sleep mode 
 }
 
 void loop() {
-
-  digitalWrite(D1, LOW); 
-  digitalWrite(ledPin, LOW); 
-  delay(5000);    // just delay for a bit here 
-  digitalWrite(D1, HIGH); 
-  digitalWrite(ledPin, HIGH); 
-  delay(5000);   
-
-  // repeat twice more 
-  
-  digitalWrite(D1, LOW); 
-  digitalWrite(ledPin, LOW); 
-  delay(5000);    // just delay for a bit here 
-  digitalWrite(D1, HIGH); 
-  digitalWrite(ledPin, HIGH); 
-  delay(5000); 
-
-  // repeat once more 
-  
-  digitalWrite(D1, LOW); 
-  digitalWrite(ledPin, LOW); 
-  delay(5000);    // just delay for a bit here 
-  digitalWrite(D1, HIGH); 
-  digitalWrite(ledPin, HIGH); 
-  delay(5000); 
-
-  while(1);   // just stay here for now 
-
-  /*
   // wait for NodeMCU #2 to send a signal here...
   client.connect(server, 80);
   // here - need to wait for an interrupt from the Nodemcu #2
@@ -98,7 +71,7 @@ void loop() {
   Serial.println("NodeMCU is waking the Arduino up...");   // for debugging 
   // TODO: wait for a response from the Arduino that it has woken up. otherwise, keep polling 
   delay(3000);            // used for debugging purposes - this is just to verify that the Arduino received the signal 
-  */ 
+
   // don't need the below - Arduino will automatically go to sleep 
   /*  
   digitalWrite(D1, HIGH); // TODO: do we even need to signal to put it to sleep? just needs to go high when we want to wake it up
@@ -112,5 +85,18 @@ void loop() {
 
   digitalWrite(ledPin, LOW);      // also for debugging 
   while(1);               // hang here for now, for debugging purposes 
-
 }
+
+// smol test script to verify that interrupts are working as expected 
+/*
+  while(true) { 
+    Serial.println("nodemcu: going to sleep"); 
+    digitalWrite(D1, LOW); 
+    digitalWrite(ledPin, LOW); 
+    delay(5000);    // just delay for a bit here 
+    Serial.println("nodemcu: waking up");
+    digitalWrite(D1, HIGH); 
+    digitalWrite(ledPin, HIGH); 
+    delay(5000);   
+  } 
+  */ 

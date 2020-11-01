@@ -13,9 +13,10 @@
  #include "avr/sleep.h"
 
  // pin constants - will have to change 
- #define  DOUT   3    // this probably has to change - this is where the interrupt will be issued 
- // pin 2 is used to issue the interrupt - see what other pin you can use 
- #define  CLK    2    // this will also probably have to change, keeping it for now 
+ #define  DOUT                3    // this probably has to change - this is where the interrupt will be issued 
+ #define  INTERRUPT_PIN       2     // pin 2 is used to issue the interrupt - see what other pin you can use 
+ // TODO: will have to change the value for CLK probably 
+ #define  CLK                 2    // this will also probably have to change, keeping it for now 
  #define  CALIBRATION_FACTOR  242   // this is the calibration factor determined from tests using the author's code; can be changed later if necessary 
 
  // other definitions 
@@ -34,6 +35,7 @@ void setup() {
   Serial.begin(115200);   // the baud rate for the serial monitor for easier debugging 
 
   // setting up the scale functionalities 
+
   scale.begin(DOUT, CLK); // TODO: determine what pins you have available to use for this function 
   scale.set_scale(CALIBRATION_FACTOR); 
   scale.tare(); 
@@ -53,7 +55,8 @@ void loop() {
   // else, send the command to the motor to grind for X seconds to achieve desired amount of ground coffee 
   // it grinds. then it goes back to sleep. tada!
 
-  digitalWrite(LED_BUILTIN, LOW); 
+  digitalWrite(LED_BUILTIN, HIGH); 
+  Serial.println("arduino: going to sleep"); 
   goingToSleep();   // this function just makes sure it goes to sleep. then it basically calls other ISRs when it wakes up. it *doesn't* have to be implemented as ISRs (ie. the code could all be functions) but i wanted to test out using ISRs for deep sleep versus just normal functions 
 } 
 
@@ -65,16 +68,13 @@ void loop() {
 void goingToSleep(void) { 
   Serial.println("going to sleep... Zzz"); 
   digitalWrite(LED_BUILTIN, LOW);       // for debugging 
-  
-  // not sure if this will work - different library, unfamiliar with it 
-  //LowPower.deepSleep();       // apparently puts the Arduino in deep sleep mode - using a different library so not sure 
-  
-  // alternatively (from the tutorial):
+   
+  // from the tutorial:
   sleep_enable(); 
   attachInterrupt(digitalPinToInterrupt(2), wakeUp, HIGH);   // setting an interrupt for the NodeMCU 
   set_sleep_mode(SLEEP_MODE_PWR_DOWN); 
   sleep_cpu();  // this enables sleep mode again 
-  Serial.println("just woke up! :D"); 
+  Serial.println("just woke up! :D");     // debugging 
 }
 
 /*
@@ -85,10 +85,9 @@ void goingToSleep(void) {
 void wakeUp(void) { 
   sleep_disable(); 
   digitalWrite(LED_BUILTIN, HIGH);                    // for debugging 
-  detachInterrupt(digitalPinToInterrupt(2));          // tbh still not too sure what this does?? removes the interrupt from pin2... might not operate as a loop in this case 
+  Serial.println("arduino: waking up"); 
+  //detachInterrupt(digitalPinToInterrupt(2));          // tbh still not too sure what this does?? removes the interrupt from pin2... might not operate as a loop in this case 
 
-  // for debugging 
-  /*
   checkWeight();    // get the scale to do its thing 
   if(scaleStatus == SUCCESS) { 
     grindCoffee(1);  // TODO: need to get the serving num from the nodemcu here 
@@ -97,7 +96,6 @@ void wakeUp(void) {
   else{ 
     triggerFault();       // functionality for edge cases has not yet been determined -- just triggering a fault or something like that 
   }
-  */
  
 } 
 
